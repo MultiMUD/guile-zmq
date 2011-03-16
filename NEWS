@@ -1,0 +1,17 @@
+Guile-0MQ NEWS
+
+
+Guile-0MQ wraps the zmq sockets library for Guile Scheme.
+
+
+guile-zmq 2.1.0 -- 2011-03-16
+================================
+
+* Initial release.
+
+
+Copyright (C) 2011 Andy Wingo <wingo@pobox.com>
+
+Copying and distribution of this file, with or without modification, are
+permitted in any medium without royalty provided the copyright notice
+and this notice are preserved.

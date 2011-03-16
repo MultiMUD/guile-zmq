@@ -1,0 +1,250 @@
+\input texinfo   @c -*-texinfo-*-
+@c %**start of header
+@setfilename guile-zmq.info
+@settitle Guile-0MQ
+@syncodeindex fn cp
+@syncodeindex vr cp
+@c %**end of header
+
+@set VERSION 2.1.0
+@set UPDATED 16 March 2011
+
+@copying 
+This manual is for Guile-0MQ (version @value{VERSION}, updated
+@value{UPDATED})
+
+Copyright 2011 Andy Wingo
+
+@quotation 
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Lesser General Public License (LGPL)
+version 3 or later.
+@end quotation
+
+@end copying
+
+@dircategory The Algorithmic Language Scheme
+@direntry 
+* Guile-0MQ: (guile-zmq.info).  Scheme bindings to the 0MQ sockets library.
+@end direntry
+
+@titlepage 
+@title Guile-0MQ
+@subtitle version @value{VERSION}, updated @value{UPDATED}
+@author Andy Wingo
+@page 
+@vskip 0pt plus 1filll
+@insertcopying 
+@end titlepage
+
+@ifnottex 
+@node Top
+@top Guile-0MQ
+
+
+@insertcopying 
+@menu
+* Introduction::                This ain't really a manual.
+* Usage::                       The API.
+* Socket Types::                A bunch of constants.
+* Socket Options::              More constants.
+
+* Index::
+@end menu
+
+@end ifnottex
+
+@iftex 
+@shortcontents 
+@end iftex
+
+@node Introduction
+@chapter Introduction
+
+Oh hai.  @url{http://zeromq.org/} is over there.
+
+Any error will throw to @code{zmq-error}.
+
+@node Usage
+@chapter Usage
+
+@defun zmq-version
+Return the runtime version of the ZeroMQ library, as three values:
+the major version, minor version, and patchlevel.
+@end defun
+
+@defun zmq-init [io-threads=1]
+Create a ZeroMQ context, optionally specifying the number of
+@var{io-threads}.
+@end defun
+
+@defun zmq-term context
+Terminate a ZeroMQ context, causing all associated sockets to wake up.
+
+This will block until all sockets are closed, so it's usually not a
+good idea.  Just rely on garbage collection to take care of
+nterminating contexts when necessary.
+@end defun
+
+@defun zmq-socket context type
+Create a ZeroMQ socket using @var{context}, with the given @var{type}.
+
+@xref{Socket Types}, for more on available socket types.
+@end defun
+
+@defun zmq-close socket
+Close a ZeroMQ socket.
+@end defun
+
+@defun zmq-bind socket addr
+Bind @var{socket} to the address @var{addr}, as a string.  For
+example, @code{"tcp://*:5555/"}.
+
+See the @code{zmq_tcp(7)}, @code{zmq_pgm(7)}, @code{zmq_ipc(7)}, and
+@code{zmq_inproc(7)} man pages for more on available transports.
+@end defun
+
+@defun zmq-connect socket addr
+Connect @var{socket} to the address @var{addr}, as a string.  For
+example, @code{"tcp://*:5555/"}.
+@end defun
+
+@defun zmq-setsockopt socket name val
+Set the @var{name} option on @var{socket} to @var{val}.
+
+@xref{Socket Options}, for more on socket options.
+@end defun
+
+@defun zmq-getsockopt socket name
+Get the @var{name} option of @var{socket}.
+@end defun
+
+@defun zmq-recv socket [flags=0]
+Receive a message from @var{socket}, as a bytevector.  Blocks unless
+the @code{ZMQ_NOBLOCK} flag is set.
+@end defun
+
+@defun zmq-send socket msg [flags=0]
+Send the bytevector @var{msg} over @var{socket}.
+
+Blocks unless the @code{ZMQ_NOBLOCK} flag is set, in which case it
+raises an error.  (Perhaps it should return @code{#t} or @code{#f} in
+that case?)
+
+Pass the @code{ZMQ_SNDMORE} flag to indicate that this is a multi-part
+message.
+@end defun
+
+@node Socket Types
+@chapter Socket Types
+
+@defvar ZMQ_PAIR
+@end defvar
+
+@defvar ZMQ_PUB
+@end defvar
+
+@defvar ZMQ_SUB
+@end defvar
+
+@defvar ZMQ_REQ
+@end defvar
+
+@defvar ZMQ_REP
+@end defvar
+
+@defvar ZMQ_XREQ
+@end defvar
+
+@defvar ZMQ_XREP
+@end defvar
+
+@defvar ZMQ_PULL
+@end defvar
+
+@defvar ZMQ_PUSH
+@end defvar
+
+@defvar ZMQ_XPUB
+@end defvar
+
+@defvar ZMQ_XSUB
+@end defvar
+
+@defvar ZMQ_UPSTREAM
+@end defvar
+
+@defvar ZMQ_DOWNSTREAM
+@end defvar
+
+@node Socket Options
+@chapter Socket Options
+
+@defvar ZMQ_HWM
+@end defvar
+
+@defvar ZMQ_SWAP
+@end defvar
+
+@defvar ZMQ_AFFINITY
+@end defvar
+
+@defvar ZMQ_IDENTITY
+@end defvar
+
+@defvar ZMQ_SUBSCRIBE
+@end defvar
+
+@defvar ZMQ_UNSUBSCRIBE
+@end defvar
+
+@defvar ZMQ_RATE
+@end defvar
+
+@defvar ZMQ_RECOVERY_IVL
+@end defvar
+
+@defvar ZMQ_MCAST_LOOP
+@end defvar
+
+@defvar ZMQ_SNDBUF
+@end defvar
+
+@defvar ZMQ_RCVBUF
+@end defvar
+
+@defvar ZMQ_RCVMORE
+@end defvar
+
+@defvar ZMQ_FD
+@end defvar
+
+@defvar ZMQ_EVENTS
+@end defvar
+
+@defvar ZMQ_TYPE
+@end defvar
+
+@defvar ZMQ_LINGER
+@end defvar
+
+@defvar ZMQ_RECONNECT_IVL
+@end defvar
+
+@defvar ZMQ_BACKLOG
+@end defvar
+
+@defvar ZMQ_RECOVERY_IVL_MSEC
+@end defvar
+
+@defvar ZMQ_RECONNECT_IVL_MAX
+@end defvar
+
+@defvar ZMQ_MAXMSGSIZE
+@end defvar
+
+
+@node Index
+@unnumbered Index
+@printindex cp
+@bye

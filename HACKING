@@ -1,0 +1,8 @@
+Hacking Guile-0MQ
+=================
+
+git clone git://.../guile-zmq.git
+cd guile-zmq
+./autogen.sh && ./configure --prefix=/opt/guile-zmq && make && sudo make install
+
+See the TODO file for pending tasks.
