@@ -11,9 +11,11 @@ config.scm: Makefile config.scm.in
 	sed -e "s|@zmqlibpath\@|$(lib_builddir)/libguile-zmq|" \
 	    $(srcdir)/config.scm.in > config.scm
 
+extlibdir = $(libdir)/guile/2.0/extensions
+
 install-data-local: Makefile config.scm.in
 	$(mkinstalldirs) $(DESTDIR)$(moduledir)
-	sed -e "s|@zmqlibpath\@|$(libdir)/libguile-zmq|" \
+	sed -e "s|@zmqlibpath\@|$(extlibdir)/libguile-zmq|" \
 	    $(srcdir)/config.scm.in > $(DESTDIR)$(moduledir)/config.scm
 	chmod 644 $(DESTDIR)$(moduledir)/config.scm
 
