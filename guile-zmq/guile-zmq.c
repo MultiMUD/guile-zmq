@@ -1,5 +1,5 @@
 /* guile-zmq
- * Copyright (C) 2011 Andy Wingo <wingo@pobox.com>
+ * Copyright (C) 2011, 2012 Andy Wingo <wingo@pobox.com>
  *
  * guile-zmq.c: 0MQ for Guile
  *
@@ -370,7 +370,7 @@ SCM_DEFINE (scm_zmq_recv, "zmq-recv", 1, 1, 0,
   if (zmq_msg_init (&msg))
     scm_zmq_error (FUNC_NAME);
   
-  if (zmq_recv (s, &msg, 0))
+  if (zmq_recv (s, &msg, cflags))
     scm_zmq_error (FUNC_NAME);
 
   ret = scm_c_make_bytevector (zmq_msg_size (&msg));
@@ -440,7 +440,6 @@ scm_init_zmq (void)
     scm_c_define ("ZMQ_BACKLOG", scm_from_int (ZMQ_BACKLOG));
     scm_c_define ("ZMQ_RECOVERY_IVL_MSEC", scm_from_int (ZMQ_RECOVERY_IVL_MSEC));
     scm_c_define ("ZMQ_RECONNECT_IVL_MAX", scm_from_int (ZMQ_RECONNECT_IVL_MAX));
-    scm_c_define ("ZMQ_MAXMSGSIZE", scm_from_int (ZMQ_MAXMSGSIZE));
     
     scm_c_define ("ZMQ_NOBLOCK", scm_from_int (ZMQ_NOBLOCK));
     scm_c_define ("ZMQ_SNDMORE", scm_from_int (ZMQ_SNDMORE));

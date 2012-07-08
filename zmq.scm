@@ -1,5 +1,5 @@
 ;; guile-zmq
-;; Copyright (C) 2011 Andy Wingo <wingo at pobox dot com>
+;; Copyright (C) 2011,2012 Andy Wingo <wingo at pobox dot com>
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU Lesser General Public License as
@@ -75,7 +75,6 @@
             ZMQ_BACKLOG
             ZMQ_RECOVERY_IVL_MSEC
             ZMQ_RECONNECT_IVL_MAX
-            ZMQ_MAXMSGSIZE
 
             zmq-recv
             zmq-send
