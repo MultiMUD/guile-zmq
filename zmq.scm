@@ -55,8 +55,6 @@
 
             zmq-setsockopt
             zmq-getsockopt
-            ZMQ_HWM
-            ZMQ_SWAP
             ZMQ_AFFINITY
             ZMQ_IDENTITY
             ZMQ_SUBSCRIBE
@@ -71,13 +69,17 @@
             ZMQ_EVENTS
             ZMQ_TYPE
             ZMQ_LINGER
-            ZMQ_RECONNECT_IVL
             ZMQ_BACKLOG
-            ZMQ_RECOVERY_IVL_MSEC
             ZMQ_RECONNECT_IVL_MAX
+			ZMQ_DONTWAIT
 
-            zmq-recv
-            zmq-send
+            zmq-msg-recv
+            zmq-msg-send
+			zmq-wrap-context
+			zmq-poll
+			ZMQ_POLLIN
+			ZMQ_POLLOUT
+			ZMQ_POLLERR
             ZMQ_NOBLOCK
             ZMQ_SNDMORE))
 
